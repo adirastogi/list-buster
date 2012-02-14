@@ -1,58 +1,52 @@
 package com.adi.ListBuster;
+
+import android.net.Uri;
+
 /*
  * This is the data structure that stores the information for a song
  */
 
 public class SongObject {
-    public SongObject(String filepath, String ranking, String album,
-            String info, String artist) {
+    public SongObject(String imagepath,String song,
+            String artist, String info) {
         super();
-        this.filepath = filepath;
-        this.ranking = ranking;
-        this.album = album;
+        this.imagepath = imagepath;
+        this.song = song;
         this.info = info;
         this.artist = artist;
     }
-    private String filepath;
-    private String ranking;
-    private String album;
+    
+    private String song;
     private String info;
     private String artist;
+    private String imagepath;
     /**
-     * @return the filepath
+     * @return the imagepath
      */
-    public String getFilepath() {
-        return filepath;
+    public Uri getImagepath() {
+        //if the song ws able to get an associated song album art
+        //from the content provider,use its uri or else use the uri of the default image.
+        Uri albumArtURI = null;
+        albumArtURI = Uri.parse(imagepath);
+        return albumArtURI;
     }
     /**
-     * @param filepath the filepath to set
+     * @param imagepath the imagepath to set
      */
-    public void setFilepath(String filepath) {
-        this.filepath = filepath;
+    public void setImagepath(String imagepath) {
+        this.imagepath = imagepath;
     }
     /**
-     * @return the ranking
+     * @return the song
      */
-    public String getRanking() {
-        return ranking;
+    public String getSong() {
+        return song;
     }
     /**
-     * @param ranking the ranking to set
+     * @param song the song to set
      */
-    public void setRanking(String ranking) {
-        this.ranking = ranking;
-    }
-    /**
-     * @return the album
-     */
-    public String getAlbum() {
-        return album;
-    }
-    /**
-     * @param album the album to set
-     */
-    public void setAlbum(String album) {
-        this.album = album;
+    public void setSong(String song) {
+        this.song = song;
     }
     /**
      * @return the info
@@ -78,4 +72,5 @@ public class SongObject {
     public void setArtist(String artist) {
         this.artist = artist;
     }
+    
 }
