@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, ListBusterActivity!</string>
     <string name="app_name">ListBuster</string>
+    <string name="appTitle">The ListBuster</string>
 
 </resources>
