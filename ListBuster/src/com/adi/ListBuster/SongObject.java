@@ -7,7 +7,7 @@ import android.net.Uri;
  */
 
 public class SongObject {
-    public SongObject(String imagepath,String song,
+    public SongObject(Uri imagepath,String song,
             String artist, String info) {
         super();
         this.imagepath = imagepath;
@@ -16,24 +16,23 @@ public class SongObject {
         this.artist = artist;
     }
     
-    private String song;
-    private String info;
-    private String artist;
-    private String imagepath;
+    private String songID;      //the song ID from the media store.//
+    private String song;        //this maps to the field display name from the media store.//
+    private String info;        //this field will be populated with data from a service.//  
+    private String artist;      //this is fetched from the media store.//
+    private Uri imagepath;   //album art from the media store. not sure if it should be a pathname.//
     /**
      * @return the imagepath
      */
     public Uri getImagepath() {
         //if the song ws able to get an associated song album art
         //from the content provider,use its uri or else use the uri of the default image.
-        Uri albumArtURI = null;
-        albumArtURI = Uri.parse(imagepath);
-        return albumArtURI;
+        return imagepath;
     }
     /**
      * @param imagepath the imagepath to set
      */
-    public void setImagepath(String imagepath) {
+    public void setImagepath(Uri imagepath) {
         this.imagepath = imagepath;
     }
     /**
