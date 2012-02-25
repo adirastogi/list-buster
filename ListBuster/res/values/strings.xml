@@ -4,5 +4,8 @@
     <string name="hello">Hello World, ListBusterActivity!</string>
     <string name="app_name">ListBuster</string>
     <string name="appTitle">The ListBuster</string>
+    <string name="coveraction">Set This Album Cover</string>
+    <string name="lastfm_root">http://ws.audioscrobbler.com/2.0/</string>
+    <string name="lastfm_api_key">ca478bfcc55c8d1e87f7726098f42c91</string>
 
 </resources>
