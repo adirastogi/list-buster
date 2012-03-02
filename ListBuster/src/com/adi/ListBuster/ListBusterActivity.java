@@ -31,6 +31,10 @@ public class ListBusterActivity extends ListActivity {
      *    -the text view contains the aritst bio, song info, album info, other tracks in the album.
      * 6. The set this as cover button is activated if the gallery selection is changed from the 
      *    initial gallery selection when the activity was started , otherwise it is inactive.
+     * 7. The retrieved server datais parsed using a parser(last FM or any other). The parser returns 
+     * 	  a song object that is used to populate the controls.
+     * 8. All the persistent data storage needs to be managed in the activity life
+     *    cycle callbacks
      * 
      */
     
