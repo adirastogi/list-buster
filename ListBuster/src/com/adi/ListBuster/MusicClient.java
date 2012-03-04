@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.adi.ListBuster;
 
 import java.io.BufferedInputStream;
@@ -12,23 +9,24 @@ import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import android.os.AsyncTask;
+public abstract class MusicClient {
+    
+    
 
-/**
- * @author vsales
- *
- */
-public class MusicClient extends AsyncTask<URL, Void, String>{
 
-    private Parser responseParser;
-    /* (non-Javadoc)
-     * @see android.os.AsyncTask#doInBackground(URL,Void,String)
+    /**This method is the template method that defines the 
+     * steps in the metadata query process. The method also has
+     * hooks in between for different clients to hook into the
+     * process and do their own stuff.
+     * @return
      */
-    @Override
-    protected String doInBackground(URL... root) {
-        // TODO Auto-generated method stub
+    protected SongObject trackResults;
+    protected SongObject trackReceived;
+    
+    protected final String queryServer(URL root) {
         
-        URL rootServer = root[0];
+
+        URL rootServer = root;
         String response = null;
         HttpURLConnection conn = null; 
         try {
@@ -46,21 +44,58 @@ public class MusicClient extends AsyncTask<URL, Void, String>{
             conn.disconnect();
         }
         
-        
         return response;
+        
     }
-
-    /* (non-Javadoc)
-     * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+    
+    public final SongObject getMusicMetadata() {
+        
+        if(searchByTrackName(trackReceived)) {
+           if(trackResults.getArtist()==null)
+               searchForArtist(trackReceived.getArtist());
+           if(trackResults.getAlbum()==null)
+               searchForAlbum(trackReceived.getAlbum());
+           if(trackResults.getImagepath()==null)
+               searchForImages();
+           if(trackResults.getAlbumInfo()==null)
+               searchForAlbumInfo(trackReceived.getAlbum());
+           if(trackResults.getArtistInfo()==null)
+               searchForArtistInfo(trackReceived.getAlbum());
+           
+           return trackResults;
+        }
+        else return null;
+            
+    }
+    
+    /** This is an abstarct method that service client classes must
+     *  provide. the basis of this method is that all service providers
+     *  should be able to find something related to the trackName on the
+     *  first attempt. if not the exact track name, then the best guess 
+     *  that they can make. Once this is done they can use the remaining
+     *  hook methods to fill the remaining info or just do it in  searchByTrackName() itself.
+     * @param trackName
+     * @return whether the track name was found or not
      */
-    @Override
-    protected void onPostExecute(String response) {
-        // process the xml recived here
+    protected abstract boolean searchByTrackName(SongObject track);
         
-        SongObject s = responseParser.parseResponse(response);
+    protected void searchForArtist(String artistName) {
         
     }
-
     
+    protected void searchForAlbum(String albumName) {
+        
+    }
     
+    protected void searchForImages() {
+        
+    }
+    
+    protected void searchForAlbumInfo(String albumName) {
+        
+    }
+    
+    protected void searchForArtistInfo(String artistName) {
+        
+    }
 }
