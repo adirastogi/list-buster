@@ -1,5 +1,8 @@
 package com.adi.ListBuster;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.net.Uri;
 
 /*
@@ -17,16 +20,47 @@ public class SongObject {
         this.song = song;
         this.albumInfo = info;
         this.artist = artist;
+        this.albumArtImages = new ArrayList<Uri>();
+    }
+    
+    public SongObject(){
+    	
     }
     
     private String songID;      //the song ID from the media store.//
     private String song;        //this maps to the field display name from the media store.//
     private String albumInfo;        //this field will be populated with data from a service.//  
     private String artistInfo;
-    private String artist;      //this is fetched from the media store.//
+    private String trackInfo;
+    
+
+	private String artist;      //this is fetched from the media store.//
     private Uri galleryImages;   //album art from the media store. not sure if it should be a pathname.//
     private String album;
+    private List<Uri> albumArtImages;
+    
+    public String getTrackInfo() {
+		return trackInfo;
+	}
+
+	public void setTrackInfo(String trackInfo) {
+		this.trackInfo = trackInfo;
+	}
+    
     /**
+     * @return the image uri collection
+     */
+	public List<Uri> getAlbumArtImages() {
+		return albumArtImages;
+	}
+	/**
+     * @param the image uri to add to collection
+     */
+	public void addAlbumArtImage(String imageUri) {
+		if(imageUri!=null)
+			this.albumArtImages.add(Uri.parse(imageUri));
+	}
+	/**
      * @return the album
      */
     public String getAlbum() {
@@ -100,4 +134,5 @@ public class SongObject {
     public void setArtistInfo(String artistInfo) {
         this.artistInfo = artistInfo;
     }
+	
 }

@@ -50,17 +50,19 @@ public abstract class MusicClient {
     
     public final SongObject getMusicMetadata() {
         
-        if(searchByTrackName(trackReceived)) {
+        if(searchByTrackName()) {
            if(trackResults.getArtist()==null)
-               searchForArtist(trackReceived.getArtist());
+               searchForArtist();
            if(trackResults.getAlbum()==null)
-               searchForAlbum(trackReceived.getAlbum());
+               searchForAlbum();
            if(trackResults.getImagepath()==null)
                searchForImages();
            if(trackResults.getAlbumInfo()==null)
-               searchForAlbumInfo(trackReceived.getAlbum());
+               searchForAlbumInfo();
+           if(trackResults.getTrackInfo()==null)
+        	   searchForTrackInfo();
            if(trackResults.getArtistInfo()==null)
-               searchForArtistInfo(trackReceived.getAlbum());
+               searchForArtistInfo();
            
            return trackResults;
         }
@@ -77,13 +79,16 @@ public abstract class MusicClient {
      * @param trackName
      * @return whether the track name was found or not
      */
-    protected abstract boolean searchByTrackName(SongObject track);
+    protected abstract boolean searchByTrackName();
         
-    protected void searchForArtist(String artistName) {
+    /**sets the artistname in the trackresults obj. default implementation does nothing
+     * @param artistName
+     */
+    protected void searchForArtist() {
         
     }
     
-    protected void searchForAlbum(String albumName) {
+    protected void searchForAlbum() {
         
     }
     
@@ -91,11 +96,15 @@ public abstract class MusicClient {
         
     }
     
-    protected void searchForAlbumInfo(String albumName) {
+    protected void searchForAlbumInfo() {
         
     }
     
-    protected void searchForArtistInfo(String artistName) {
+    protected void searchForTrackInfo(){
+    	
+    }
+    
+    protected void searchForArtistInfo() {
         
     }
 }
