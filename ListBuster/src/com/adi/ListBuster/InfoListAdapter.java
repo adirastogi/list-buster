@@ -1,3 +1,9 @@
+/*
+ * This class is the adpater for the infolist that is populated sit data from the server.
+ */
+
+
+
 package com.adi.ListBuster;
 
 import java.util.ArrayList;

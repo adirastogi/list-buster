@@ -35,7 +35,26 @@ public class ListBusterActivity extends ListActivity {
      * 	  a song object that is used to populate the controls.
      * 8. All the persistent data storage needs to be managed in the activity life
      *    cycle callbacks
-     * 
+     *    
+     *    
+     *    
+     *    
+     *    Image loading mechanism : - 
+     *    
+     *    1. create an intent with the song details in Activity 1.
+     *    2. Passs this intent to the other Activity where it will be used
+     *    	 to get the song object.
+     *    3. Call the AsyncTask inside Activity 2 that queries lastFM and doenloads the images
+     *    	.then inside onPostexecute of the AsyncTask update the files.
+     *    
+     *    for the Image Loading Mechanism:
+     *    1. Create a file cache class , that caches the images on the external 
+     *    storage.
+     *    2. Create an in memory cache that caches the images in memory.
+     *    3. When a request for an image is made, first the memory cache is used, then the file cache is queried ,
+     *    	 if the file is found in the file cache, it is loaded into the memory cache and then returned
+     *    	 from there. If it is not found in the file cahce, then it is loaded from the web put into the file cache, 
+     *    	then put into the memory cache.
      */
     
     
