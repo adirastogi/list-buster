@@ -4,9 +4,15 @@
 
 
 
-package com.adi.ListBuster;
+package com.adi.ListBuster.InfoView;
 
 import java.util.ArrayList;
+
+import com.adi.ListBuster.R;
+import com.adi.ListBuster.R.drawable;
+import com.adi.ListBuster.R.id;
+import com.adi.ListBuster.R.layout;
+import com.adi.ListBuster.SongInfo.SongObject;
 
 import android.content.Context;
 import android.view.LayoutInflater;

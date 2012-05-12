@@ -1,4 +1,4 @@
-package com.adi.ListBuster;
+package com.adi.ListBuster.ServiceClients;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -15,6 +15,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import com.adi.ListBuster.R;
+import com.adi.ListBuster.R.string;
+import com.adi.ListBuster.SongInfo.SongObject;
 
 import android.content.Context;
 
@@ -195,8 +199,6 @@ public class LastFMClient extends MusicClient {
     	}
 	}
 	
-
-
 
 	@Override
 	protected void searchForTrackInfo() {

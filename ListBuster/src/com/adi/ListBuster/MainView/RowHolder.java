@@ -1,4 +1,7 @@
-package com.adi.ListBuster;
+package com.adi.ListBuster.MainView;
+
+import com.adi.ListBuster.R;
+import com.adi.ListBuster.R.id;
 
 import android.view.View;
 import android.widget.ImageView;

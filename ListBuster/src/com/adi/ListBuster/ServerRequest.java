@@ -3,6 +3,9 @@
  */
 package com.adi.ListBuster;
 
+import com.adi.ListBuster.ServiceClients.LastFMClient;
+import com.adi.ListBuster.SongInfo.SongObject;
+
 import android.os.AsyncTask;
 
 /**

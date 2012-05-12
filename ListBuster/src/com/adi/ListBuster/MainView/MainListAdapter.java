@@ -1,4 +1,8 @@
-package com.adi.ListBuster;
+package com.adi.ListBuster.MainView;
+
+import com.adi.ListBuster.R;
+import com.adi.ListBuster.R.layout;
+import com.adi.ListBuster.SongInfo.AudioProvider;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
-public class MusicAdapter extends CursorAdapter{
+public class MainListAdapter extends CursorAdapter{
 
     
     private AudioProvider ap;
     
-    public MusicAdapter(Context context, AudioProvider ap) {
+    public MainListAdapter(Context context, AudioProvider ap) {
     	// TODO Auto-generated constructor stub
     	super(context,ap.getSongsCursor());
         this.ap = ap;

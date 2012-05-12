@@ -1,4 +1,4 @@
-package com.adi.ListBuster;
+package com.adi.ListBuster.ServiceClients;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import com.adi.ListBuster.SongInfo.SongObject;
 
 public abstract class MusicClient {
     

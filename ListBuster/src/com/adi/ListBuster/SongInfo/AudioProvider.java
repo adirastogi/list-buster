@@ -1,4 +1,4 @@
-package com.adi.ListBuster;
+package com.adi.ListBuster.SongInfo;
 
 import android.content.ContentUris;
 import android.content.Context;

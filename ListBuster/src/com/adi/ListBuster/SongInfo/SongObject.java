@@ -1,4 +1,4 @@
-package com.adi.ListBuster;
+package com.adi.ListBuster.SongInfo;
 
 import java.util.ArrayList;
 import java.util.List;
