@@ -1,5 +1,6 @@
 package com.adi.ListBuster.SongInfo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,8 @@ import android.net.Uri;
  * client, the android media store etc.
  */
 
-public class SongObject {
+public class SongObject implements Serializable {
+	
     public SongObject(Uri imagepath,String song,
             String artist, String info) {
         super();

@@ -2,19 +2,16 @@ package com.adi.ListBuster.InfoView;
 
 import java.util.ArrayList;
 
-import com.adi.ListBuster.R;
-import com.adi.ListBuster.R.id;
-import com.adi.ListBuster.R.layout;
-import com.adi.ListBuster.R.styleable;
-
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
+import com.adi.ListBuster.R;
 
 public class GalleryAdapter extends BaseAdapter{
     
@@ -23,11 +20,12 @@ public class GalleryAdapter extends BaseAdapter{
     //an array of album art image bitmaps that is passed to this control.
     //The bitmaps have been created after loading the images from the server and processing
     //them to get a certain size.
-    private ArrayList<Drawable> albumImages;
+    private ArrayList<Bitmap> albumImages;
 
-    public GalleryAdapter(Context context) {
+    public GalleryAdapter(Context context,ArrayList<Bitmap> aI) {
         super();
         this.context = context;
+        albumImages = aI;
         TypedArray a = context.obtainStyledAttributes(R.styleable.AlbumGallery);
         imageBackground = a.getResourceId(R.styleable.AlbumGallery_android_galleryItemBackground, 0);
         a.recycle();
@@ -57,7 +55,7 @@ public class GalleryAdapter extends BaseAdapter{
             convertView = inflator.inflate(R.layout.gallery_view,parent,false);
         }
         ImageView imageView = (ImageView)convertView.findViewById(R.id.gallery_image);
-        imageView.setImageDrawable(albumImages.get(position));
+        imageView.setImageBitmap(albumImages.get(position));
         imageView.setBackgroundResource(this.imageBackground);
         
         return imageView;

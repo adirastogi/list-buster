@@ -12,6 +12,10 @@ import java.util.Vector;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Parcelable;
 
 /**
  * @author adrastog
@@ -23,9 +27,9 @@ public class ImageLoader {
 	
 	private MemCache mCache;
 	private Vector<URL> imgUrls;
+	private Handler handler;
 	
-	
-	public ImageLoader(Vector<URL> imgUrls){
+	public ImageLoader(Vector<URL> imgUrls, Handler handler){
 		mCache = MemCache.getMemCache();
 		this.imgUrls = imgUrls;
 	}
@@ -44,7 +48,10 @@ public class ImageLoader {
 					//found in cache
 					if((bmp=mCache.get(u.toString()))!=null){
 						//send a message to handler;
-						
+						Message m = handler.obtainMessage();
+						Bundle b = new Bundle();
+						b.putParcelable("image", (Parcelable)bmp);
+						handler.sendMessage(m);
 					}else{
 						//get from net
 						HttpURLConnection conn = null;
@@ -53,7 +60,10 @@ public class ImageLoader {
 							InputStream in = new BufferedInputStream(conn.getInputStream());
 							bmp = BitmapFactory.decodeStream(in);
 							//send the message to handler
-							
+							Message m = handler.obtainMessage();
+							Bundle b = new Bundle();
+							b.putParcelable("image", (Parcelable)bmp);
+							handler.sendMessage(m); 
 							mCache.put(u.toString(), bmp);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
