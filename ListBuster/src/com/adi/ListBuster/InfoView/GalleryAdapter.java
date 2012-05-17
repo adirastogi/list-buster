@@ -49,7 +49,7 @@ public class GalleryAdapter extends BaseAdapter{
     }
 
     
-    public Object getItem(int arg0) {
+    public Bitmap getItem(int arg0) {
         // TODO Auto-generated method stub
         return albumImages.get(arg0);
     }

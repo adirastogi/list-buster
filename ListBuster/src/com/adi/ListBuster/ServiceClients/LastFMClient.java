@@ -11,16 +11,14 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.adi.ListBuster.R;
-import com.adi.ListBuster.R.string;
-import com.adi.ListBuster.SongInfo.SongObject;
-
 import android.content.Context;
+
+import com.adi.ListBuster.R;
+import com.adi.ListBuster.SongInfo.SongObject;
 
 /* 
  * this class constructs query URLs for the last.fm API.

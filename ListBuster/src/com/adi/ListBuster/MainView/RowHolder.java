@@ -1,11 +1,10 @@
 package com.adi.ListBuster.MainView;
 
-import com.adi.ListBuster.R;
-import com.adi.ListBuster.R.id;
-
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.adi.ListBuster.R;
 
 public class RowHolder{
 

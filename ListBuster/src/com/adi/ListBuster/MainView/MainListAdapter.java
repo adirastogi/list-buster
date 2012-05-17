@@ -1,15 +1,14 @@
 package com.adi.ListBuster.MainView;
 
-import com.adi.ListBuster.R;
-import com.adi.ListBuster.R.layout;
-import com.adi.ListBuster.SongInfo.AudioProvider;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+
+import com.adi.ListBuster.R;
+import com.adi.ListBuster.SongInfo.AudioProvider;
 
 public class MainListAdapter extends CursorAdapter{
 

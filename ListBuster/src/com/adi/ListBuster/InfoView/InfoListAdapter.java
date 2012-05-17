@@ -8,12 +8,6 @@ package com.adi.ListBuster.InfoView;
 
 import java.util.ArrayList;
 
-import com.adi.ListBuster.R;
-import com.adi.ListBuster.R.drawable;
-import com.adi.ListBuster.R.id;
-import com.adi.ListBuster.R.layout;
-import com.adi.ListBuster.SongInfo.SongObject;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.adi.ListBuster.R;
+import com.adi.ListBuster.SongInfo.SongObject;
 
 public class InfoListAdapter extends BaseExpandableListAdapter{
     
@@ -35,8 +32,15 @@ public class InfoListAdapter extends BaseExpandableListAdapter{
         this.headers.add("Track");
         this.headers.add("Artist");
         this.headers.add("Album");
-        
-        ArrayList<String> TrackInfo = new ArrayList<String>();
+        content = new ArrayList<ArrayList<String>>();
+        setDisplayTrack(track);
+    }
+    
+    public void setDisplayTrack(SongObject track){
+    	
+    	content.clear();
+    	
+    	ArrayList<String> TrackInfo = new ArrayList<String>();
         TrackInfo.add(track.getSong());
         TrackInfo.add(track.getTrackInfo());
         
@@ -48,10 +52,11 @@ public class InfoListAdapter extends BaseExpandableListAdapter{
         AlbumInfo.add(track.getAlbum());
         AlbumInfo.add(track.getAlbumInfo());
         
-        content = new ArrayList<ArrayList<String>>();
         content.add(TrackInfo);
         content.add(ArtistInfo);
         content.add(AlbumInfo);
+        
+        this.notifyDataSetChanged();
     }
 
     public Object getChild(int headerPos, int contentPos) {

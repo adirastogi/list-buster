@@ -27,7 +27,15 @@ public class SongObject implements Serializable {
         this.albumArtImages = new ArrayList<URL>();
     }
     
-    public SongObject(){
+    public Uri getMediaStoreImage() {
+		return mediaStoreImage;
+	}
+
+	public void setMediaStoreImage(Uri mediaStoreImage) {
+		this.mediaStoreImage = mediaStoreImage;
+	}
+
+	public SongObject(){
     	
     }
     
