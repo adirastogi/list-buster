@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.adi.ListBuster.R;
 
+
 public class GalleryAdapter extends BaseAdapter{
     
     private Context context;
@@ -31,6 +32,16 @@ public class GalleryAdapter extends BaseAdapter{
         a.recycle();
     }
 
+    
+    /**
+     * @param bmp
+     * This adds the received item to the underlying dataset of the image
+     * and notifies the gallery to update itself.
+     */
+    public void addImage(Bitmap bmp){
+    	albumImages.add(bmp);
+    	this.notifyDataSetChanged();
+    }
     
     public int getCount() {
         // TODO Auto-generated method stub

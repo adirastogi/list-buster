@@ -1,6 +1,8 @@
 package com.adi.ListBuster.SongInfo;
 
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +20,11 @@ public class SongObject implements Serializable {
     public SongObject(Uri imagepath,String song,
             String artist, String info) {
         super();
-        this.galleryImages = imagepath;
+        this.mediaStoreImage = imagepath;
         this.song = song;
         this.albumInfo = info;
         this.artist = artist;
-        this.albumArtImages = new ArrayList<Uri>();
+        this.albumArtImages = new ArrayList<URL>();
     }
     
     public SongObject(){
@@ -32,14 +34,14 @@ public class SongObject implements Serializable {
     private String songID;      //the song ID from the media store.//
     private String song;        //this maps to the field display name from the media store.//
     private String albumInfo;        //this field will be populated with data from a service.//  
-    private String artistInfo;
-    private String trackInfo;
+    private String artistInfo;	     //this field will be populated with data from a service.//
+    private String trackInfo;		//this field will be populated with data from a service.//	
     
 
 	private String artist;      //this is fetched from the media store.//
-    private Uri galleryImages;   //album art from the media store. not sure if it should be a pathname.//
+    private Uri mediaStoreImage;   //album art from the media store. not sure if it should be a pathname.//
     private String album;
-    private List<Uri> albumArtImages;
+    private List<URL> albumArtImages;
     
     public String getTrackInfo() {
 		return trackInfo;
@@ -52,15 +54,21 @@ public class SongObject implements Serializable {
     /**
      * @return the image uri collection
      */
-	public List<Uri> getAlbumArtImages() {
+	public List<URL> getAlbumArtImages() {
 		return albumArtImages;
 	}
 	/**
      * @param the image uri to add to collection
      */
-	public void addAlbumArtImage(String imageUri) {
-		if(imageUri!=null)
-			this.albumArtImages.add(Uri.parse(imageUri));
+	public void addAlbumArtImage(String imageUrl) {
+		if(imageUrl!=null){
+			try {
+				albumArtImages.add(new URL(imageUrl));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	/**
      * @return the album
@@ -80,13 +88,13 @@ public class SongObject implements Serializable {
     public Uri getImagepath() {
         //if the song ws able to get an associated song album art
         //from the content provider,use its uri or else use the uri of the default image.
-        return galleryImages;
+        return mediaStoreImage;
     }
     /**
      * @param imagepath the imagepath to set
      */
     public void setImagepath(Uri imagepath) {
-        this.galleryImages = imagepath;
+        this.mediaStoreImage = imagepath;
     }
     /**
      * @return the song

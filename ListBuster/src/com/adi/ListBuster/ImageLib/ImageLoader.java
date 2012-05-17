@@ -26,12 +26,14 @@ import android.os.Parcelable;
 public class ImageLoader {
 	
 	private MemCache mCache;
-	private Vector<URL> imgUrls;
+	private Vector<URL> imgUrls; //we use a vector as es neeed a synchronised data structure for
+	//access by threads.
 	private Handler handler;
 	
 	public ImageLoader(Vector<URL> imgUrls, Handler handler){
 		mCache = MemCache.getMemCache();
 		this.imgUrls = imgUrls;
+		this.handler = handler;
 	}
 	
 	
@@ -51,6 +53,7 @@ public class ImageLoader {
 						Message m = handler.obtainMessage();
 						Bundle b = new Bundle();
 						b.putParcelable("image", (Parcelable)bmp);
+						m.setData(b);
 						handler.sendMessage(m);
 					}else{
 						//get from net
@@ -63,6 +66,7 @@ public class ImageLoader {
 							Message m = handler.obtainMessage();
 							Bundle b = new Bundle();
 							b.putParcelable("image", (Parcelable)bmp);
+							m.setData(b);
 							handler.sendMessage(m); 
 							mCache.put(u.toString(), bmp);
 						} catch (IOException e) {
@@ -77,6 +81,7 @@ public class ImageLoader {
 			}
 			
 		});
+		imgDownloader.start();
 	}
 
 }
