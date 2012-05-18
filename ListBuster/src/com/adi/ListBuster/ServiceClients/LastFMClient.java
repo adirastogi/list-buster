@@ -44,7 +44,6 @@ import com.adi.ListBuster.SongInfo.SongObject;
 */
 public class LastFMClient extends MusicClient {
     
-    private Context context;
     private DocumentBuilder parser = null;
     private final String serverRoot; 
     private final String apiKey;
@@ -52,7 +51,6 @@ public class LastFMClient extends MusicClient {
     
     public LastFMClient(Context context,SongObject trackRecd) {
     	super(trackRecd);
-        this.context = context;
         this.serverRoot = context.getString(R.string.lastfm_root); 
         this.apiKey = context.getString(R.string.lastfm_api_key);
     }

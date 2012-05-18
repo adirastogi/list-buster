@@ -5,7 +5,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import android.database.Cursor;
 import android.net.Uri;
 
 /*
@@ -19,17 +18,16 @@ public class SongObject implements Serializable {
 	
     
     
-    private String songID;      //the song ID from the media store.//
     private String song;        //this maps to the field display name from the media store.//
+    private String artist;      //this is fetched from the media store.//
+    private String album;		//this is fetched from the media store.//
+    private Uri mediaStoreImage;   //album art from the media store. not sure if it should be a pathname.//
+    
+
     private String albumInfo;        //this field will be populated with data from a service.//  
     private String artistInfo;	     //this field will be populated with data from a service.//
     private String trackInfo;		//this field will be populated with data from a service.//	
-    
-
-	private String artist;      //this is fetched from the media store.//
-    private Uri mediaStoreImage;   //album art from the media store. not sure if it should be a pathname.//
-    private String album;
-    private List<URL> albumArtImages;
+    private List<URL> albumArtImages;//this field will be populated with data from a service.//
     
     
     public SongObject(){
