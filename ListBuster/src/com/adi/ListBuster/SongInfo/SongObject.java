@@ -3,9 +3,9 @@ package com.adi.ListBuster.SongInfo;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
+import android.database.Cursor;
 import android.net.Uri;
 
 /*
@@ -17,27 +17,7 @@ import android.net.Uri;
 
 public class SongObject implements Serializable {
 	
-    public SongObject(Uri imagepath,String song,
-            String artist, String info) {
-        super();
-        this.mediaStoreImage = imagepath;
-        this.song = song;
-        this.albumInfo = info;
-        this.artist = artist;
-        this.albumArtImages = new ArrayList<URL>();
-    }
     
-    public Uri getMediaStoreImage() {
-		return mediaStoreImage;
-	}
-
-	public void setMediaStoreImage(Uri mediaStoreImage) {
-		this.mediaStoreImage = mediaStoreImage;
-	}
-
-	public SongObject(){
-    	
-    }
     
     private String songID;      //the song ID from the media store.//
     private String song;        //this maps to the field display name from the media store.//
@@ -50,6 +30,20 @@ public class SongObject implements Serializable {
     private Uri mediaStoreImage;   //album art from the media store. not sure if it should be a pathname.//
     private String album;
     private List<URL> albumArtImages;
+    
+    
+    public SongObject(){
+    	
+    }
+    
+    public Uri getMediaStoreImage() {
+		return mediaStoreImage;
+	}
+
+	public void setMediaStoreImage(Uri mediaStoreImage) {
+		this.mediaStoreImage = mediaStoreImage;
+	}
+
     
     public String getTrackInfo() {
 		return trackInfo;

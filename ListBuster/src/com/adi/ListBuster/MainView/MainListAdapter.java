@@ -9,11 +9,14 @@ import android.widget.CursorAdapter;
 
 import com.adi.ListBuster.R;
 import com.adi.ListBuster.SongInfo.AudioProvider;
+import com.adi.ListBuster.SongInfo.SongObject;
 
 public class MainListAdapter extends CursorAdapter{
 
     
-    private AudioProvider ap;
+	
+    
+	private AudioProvider ap;
     
     public MainListAdapter(Context context, AudioProvider ap) {
     	// TODO Auto-generated constructor stub
@@ -21,6 +24,19 @@ public class MainListAdapter extends CursorAdapter{
         this.ap = ap;
     }
 
+    @Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+    	Cursor c = this.getCursor();
+    	c.moveToPosition(position);
+    	SongObject track = new SongObject();
+    	track.setSong(ap.getSongName());
+    	track.setArtist(ap.getArtistName());
+    	track.setAlbum(ap.getAlbumName());
+    	track.setMediaStoreImage(ap.getAlbumArtUri());
+    	return track;
+    }    
+    
 	@Override
 	public void bindView(View view, Context context, Cursor songCursor) {
 		// TODO Auto-generated method stub
@@ -28,7 +44,7 @@ public class MainListAdapter extends CursorAdapter{
         RowHolder holder = (RowHolder)view.getTag();
         
         /*We access the methods of theutility class AudioProvider to 
-         * get the formatted information from the cusor since the AudiProvider
+         * get the formatted information from the cursor since the AudiProvider
          * object apparently holds a reference to the same cursor object as is 
          * received in this method.
          * TODO fix this.

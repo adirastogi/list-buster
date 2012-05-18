@@ -50,12 +50,11 @@ public class LastFMClient extends MusicClient {
     private final String apiKey;
    
     
-    public LastFMClient(Context context) {
-    	super();
+    public LastFMClient(Context context,SongObject trackRecd) {
+    	super(trackRecd);
         this.context = context;
         this.serverRoot = context.getString(R.string.lastfm_root); 
         this.apiKey = context.getString(R.string.lastfm_api_key);
-        this.trackResults = new SongObject();
     }
     
 

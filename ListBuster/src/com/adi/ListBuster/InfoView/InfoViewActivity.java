@@ -32,6 +32,7 @@ public class InfoViewActivity extends Activity{
 	private TextView title;
 	private ExpandableListView elView;
 	private ImageView iView;
+	private SongObject song;     //the song object received from previous activity
 	private final Handler imageMessageHandler = new Handler(){
 
 		@Override
@@ -49,8 +50,7 @@ public class InfoViewActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.infoview);
-		Bundle bundleLV = this.getIntent().getExtras();
-		SongObject song = (SongObject) bundleLV.getSerializable("track"); 
+		song = (SongObject) this.getIntent().getSerializableExtra("track"); 
 		title = (TextView)findViewById(R.id.titleText);
 		elView = (ExpandableListView)findViewById(R.id.elView);
 		iView = (ImageView)findViewById(R.id.imageViewMain);
@@ -99,6 +99,7 @@ public class InfoViewActivity extends Activity{
 	protected void onRestart() {
 		// TODO Auto-generated method stub
 		super.onRestart();
+		
 	}
 
 	@Override
@@ -131,6 +132,7 @@ public class InfoViewActivity extends Activity{
 				// TODO Auto-generated method stub
 				/*
 				 * Use the results to populate the expandable list view.
+				 * 
 				 */
 				((InfoListAdapter)elView.getAdapter()).setDisplayTrack(result);
 				/*
@@ -146,7 +148,7 @@ public class InfoViewActivity extends Activity{
 			
 			
 		};
-		getMetadata.execute(new LastFMClient(getApplicationContext()));
+		getMetadata.execute(new LastFMClient(getApplicationContext(),song));
 	}
 
 	@Override

@@ -25,6 +25,11 @@ public abstract class MusicClient {
     protected SongObject trackResults;
     protected SongObject trackReceived;
     
+    protected MusicClient(SongObject tr){
+    	trackReceived = tr;
+    	trackResults = new SongObject();
+    }
+    
     protected final String queryServer(URL root) {
         
 

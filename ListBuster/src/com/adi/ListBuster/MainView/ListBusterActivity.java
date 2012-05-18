@@ -1,14 +1,48 @@
-package com.adi.ListBuster;
+package com.adi.ListBuster.MainView;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.adi.ListBuster.R;
+import com.adi.ListBuster.InfoView.InfoViewActivity;
+import com.adi.ListBuster.SongInfo.AudioProvider;
+import com.adi.ListBuster.SongInfo.SongObject;
 
 public class ListBusterActivity extends ListActivity {
     /** Called when the activity is first created. */
+    
+    private ListView trackList;
+    private TextView listHeader;
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        listHeader = (TextView)findViewById(R.layout.main);
+        trackList = (ListView)findViewById(R.layout.main);
+        //initialize the AudioProvider and use it to get the results into the List adapter
+        AudioProvider ap = new AudioProvider(this.getApplicationContext());
+        trackList.setAdapter(new MainListAdapter(this.getApplicationContext(),ap));
+        
+        //set the click listener for the list items.
+        trackList.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> lView, View arg1, int position,
+					long arg3) {
+				// TODO Auto-generated method stub
+				ListView lv = (ListView)lView;
+				SongObject s =(SongObject)(lv.getAdapter().getItem(position));
+				Intent i = new Intent(getApplicationContext(),InfoViewActivity.class);
+				i.putExtra("track", s);
+				startActivity(i);
+			}
+		});
     }
     
     
