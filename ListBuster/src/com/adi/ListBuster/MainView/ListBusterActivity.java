@@ -24,13 +24,13 @@ public class ListBusterActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        listHeader = (TextView)findViewById(R.layout.main);
-        trackList = (ListView)findViewById(R.layout.main);
+       // listHeader = (TextView)findViewById(R.layout.main.);
+        trackList = (ListView)findViewById(android.R.id.list);
         //initialize the AudioProvider and use it to get the results into the List adapter
         AudioProvider ap = new AudioProvider(this.getApplicationContext());
         trackList.setAdapter(new MainListAdapter(this.getApplicationContext(),ap));
         
-        //set the click listener for the list items.
+        //s6 8c et the click listener for the list ..items.
         trackList.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> lView, View arg1, int position,

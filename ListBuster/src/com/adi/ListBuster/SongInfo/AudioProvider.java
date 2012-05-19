@@ -33,8 +33,9 @@ public class AudioProvider {
                 MediaStore.Audio.Media.DISPLAY_NAME,
                 MediaStore.Audio.Media.ARTIST,
                 MediaStore.Audio.Media.ALBUM,
-                MediaStore.Audio.Media.ALBUM_ID,
-                MediaStore.Audio.Media.ALBUM_ART,
+                MediaStore.Audio.Media.ALBUM_ID
+                //TODO why is this giving an exception ?? It says no such column
+               // MediaStore.Audio.Media.ALBUM_ART
         };
         
         songCursor = appContext.getContentResolver().query(musicUri, projection, null, null, null);

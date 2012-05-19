@@ -39,7 +39,7 @@
                 android:id="@+id/galleryView"
                 android:layout_width="wrap_content"
                 android:layout_height="75dp"
-                android:layout_below="@+id/imageView1"
+                android:layout_below="@+id/imageViewMain"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/infoviewbanner" />
 
@@ -47,7 +47,7 @@
                 android:id="@+id/buttonSetImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/gallery1"
+                android:layout_below="@+id/galleryView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="@string/coveraction" />
@@ -56,7 +56,7 @@
                 android:id="@+id/elView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/buttonSetImage"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp" android:choiceMode="none" android:clickable="false" android:scrollbars="none">
             </ExpandableListView>
