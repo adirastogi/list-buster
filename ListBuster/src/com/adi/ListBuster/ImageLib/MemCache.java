@@ -34,7 +34,7 @@ public class MemCache {
 		return singletonMemCache;
 	}
 	
-	
+	//cooment
 	public Bitmap get(String url){
 		Bitmap b=null;
 		if(mTable.containsKey(url)){
