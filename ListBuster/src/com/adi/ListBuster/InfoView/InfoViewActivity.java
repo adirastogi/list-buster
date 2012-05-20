@@ -50,7 +50,7 @@ public class InfoViewActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.infoview);
-		song = (SongObject) this.getIntent().getSerializableExtra("track"); 
+		song = (SongObject) this.getIntent().getParcelableExtra("track"); 
 		title = (TextView)findViewById(R.id.titleText);
 		elView = (ExpandableListView)findViewById(R.id.elView);
 		iView = (ImageView)findViewById(R.id.imageViewMain);

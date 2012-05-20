@@ -1,11 +1,12 @@
 package com.adi.ListBuster.SongInfo;
 
-import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /*
  * This is the data structure that stores the information for a song.
@@ -14,10 +15,13 @@ import android.net.Uri;
  * client, the android media store etc.
  */
 
-public class SongObject implements Serializable {
+public class SongObject implements Parcelable {
 	
     
     
+    /**
+     * 
+     */
     private String song;        //this maps to the field display name from the media store.//
     private String artist;      //this is fetched from the media store.//
     private String album;		//this is fetched from the media store.//
@@ -32,6 +36,32 @@ public class SongObject implements Serializable {
     
     public SongObject(){
     	
+    }
+    
+    private SongObject(Parcel in) {
+        song = in.readString();
+        artist = in.readString();
+        album = in.readString();
+        mediaStoreImage = in.readParcelable(null);
+        albumInfo = in.readString();
+        artistInfo = in.readString();
+        trackInfo = in.readString();
+        in.readList(albumArtImages,null);
+    }
+    
+    public void writeToParcel(Parcel dest, int flags) {
+        // TODO Auto-generated method stub
+        dest.writeString(song);
+        dest.writeString(artist);
+        dest.writeString(album);
+        dest.writeParcelable(mediaStoreImage, 0);
+        
+        dest.writeString(albumInfo);
+        dest.writeString(artistInfo);
+        dest.writeString(trackInfo);
+        dest.writeList(albumArtImages);
+        
+        
     }
     
     public Uri getMediaStoreImage() {
@@ -144,5 +174,12 @@ public class SongObject implements Serializable {
     public void setArtistInfo(String artistInfo) {
         this.artistInfo = artistInfo;
     }
+
+    public int describeContents() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+   
 	
 }
