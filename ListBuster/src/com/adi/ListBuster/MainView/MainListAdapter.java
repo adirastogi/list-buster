@@ -62,7 +62,8 @@ public class MainListAdapter extends CursorAdapter{
 	     View rowView = null;
 	      
 	     LayoutInflater inflator = LayoutInflater.from(context);
-	     rowView = inflator.inflate(R.layout.row,parent);
+	     //TODO had to change the parent to null to get this to work , why ??
+	     rowView = inflator.inflate(R.layout.row,null);
 	     holder = new RowHolder(rowView);
 	     rowView.setTag(holder);
 	       	        

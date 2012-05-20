@@ -5,15 +5,15 @@
 
     <ImageView
         android:id="@+id/albumArt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:paddingBottom="2dp"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
         android:paddingTop="2dp"
-        android:src="@drawable/defart" />
+        android:src="@drawable/defart" android:scaleType="fitCenter"/>
 
     <TextView
         android:id="@+id/songName"

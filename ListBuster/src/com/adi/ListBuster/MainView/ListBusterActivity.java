@@ -30,7 +30,7 @@ public class ListBusterActivity extends ListActivity {
         AudioProvider ap = new AudioProvider(this.getApplicationContext());
         trackList.setAdapter(new MainListAdapter(this.getApplicationContext(),ap));
         
-        //s6 8c et the click listener for the list ..items.
+        //set the click listener for the list ..items.
         trackList.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> lView, View arg1, int position,

@@ -30,7 +30,7 @@ public class AudioProvider {
         
         String[] projection = {
                 MediaStore.Audio.Media._ID,
-                MediaStore.Audio.Media.DISPLAY_NAME,
+                MediaStore.Audio.Media.TITLE,
                 MediaStore.Audio.Media.ARTIST,
                 MediaStore.Audio.Media.ALBUM,
                 MediaStore.Audio.Media.ALBUM_ID
@@ -66,7 +66,7 @@ public class AudioProvider {
     	if(songCursor==null)
     		return null;
     	
-    	int songNameIndex = songCursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME);
+    	int songNameIndex = songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
     	String songName = songCursor.getString(songNameIndex);
     	return songName;
     }
