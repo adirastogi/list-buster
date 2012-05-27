@@ -1,5 +1,7 @@
 package com.adi.ListBuster.InfoView;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +9,13 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -56,16 +60,35 @@ public class InfoViewActivity extends Activity{
 		iView = (ImageView)findViewById(R.id.imageViewMain);
 		gView = (Gallery)findViewById(R.id.galleryView);
 		
-		gView.setAdapter(new GalleryAdapter(getApplicationContext(), new ArrayList<Bitmap>()));
-		elView.setAdapter(new InfoListAdapter(getApplicationContext(), song));
-		title.setText(song.getSong());
-		
 		//if the song already has an album art, use that for display instead of stock.
 		Uri defaultImage;
-		if((defaultImage = song.getMediaStoreImage())!=null)
-			iView.setImageURI(defaultImage);
+		Bitmap b =null;
+		if((defaultImage = song.getMediaStoreImage())!=null) {
+		    try {
+                b = MediaStore.Images.Media.getBitmap(this.getContentResolver(), defaultImage);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+		       
+		}
 		
+		if(b==null) 
+		    b = BitmapFactory.decodeResource(getResources(), R.drawable.disc);
+		    
 		
+		ArrayList<Bitmap> bmpList = new ArrayList<Bitmap>();
+        bmpList.add(b);
+        gView.setAdapter(new GalleryAdapter(getApplicationContext(),bmpList));
+
+        elView.setAdapter(new InfoListAdapter(getApplicationContext(), song));
+        title.setText(song.getSong());
+        
+        
+        
 		//set the click listeners for the metadata expandable list.
 		elView.setOnGroupClickListener(new OnGroupClickListener() {
 			
@@ -112,6 +135,7 @@ public class InfoViewActivity extends Activity{
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		;
 		/*
 		 * As soon as the activity starts and the UI has been loaded, make the 
 		 * call to the server for fetching the song metadata. Once the data has 

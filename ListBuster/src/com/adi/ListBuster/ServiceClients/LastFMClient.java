@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,6 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -211,23 +213,17 @@ public class LastFMClient extends MusicClient {
 	}
 
 
-	protected URL createRequestString(String[] paramlist){
+	protected String createRequestString(String[] paramlist){
     	String request = serverRoot+"&api_key="+apiKey;
-    	//unpack params
+    	//unpack params and encode them
+    	String queryString = "";
     	for (String param : paramlist){
     		String key = param.split(":")[0];
-    		String value = param.split(":")[1];
-    		request = request+"&"+key+"="+value;
+    		String value = URLEncoder.encode(param.split(":")[1]);
+    		queryString = queryString+"&"+key+"="+value;
     	}
     	
-    	URL requestURL = null;
-    	
-    	try {
-			requestURL = new URL(request);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	String requestURL = request+queryString;
     	
     	return requestURL;
     }
@@ -284,8 +280,12 @@ public class LastFMClient extends MusicClient {
 		}
     	
     	//if there is an error return null.
-    	if(doc.getDocumentElement().getAttribute("status").equals("ok"))
-    		return doc;
+    	Element e = doc.getDocumentElement();
+    	String s = e.getAttribute("status");
+    	boolean x = s.equals("ok");
+    	if(x) {
+    	    return doc;
+    	}
     	else return null;	
     }
     

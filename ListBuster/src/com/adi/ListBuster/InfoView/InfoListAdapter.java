@@ -74,7 +74,7 @@ public class InfoListAdapter extends BaseExpandableListAdapter{
         // TODO Auto-generated method stub
         if(convertView==null) {
             LayoutInflater inflator = LayoutInflater.from(context);
-            convertView = inflator.inflate(R.layout.content_layout,parent);
+            convertView = inflator.inflate(R.layout.content_layout,null);
         }
         TextView contentText = (TextView)convertView.findViewById(R.id.content_text);
         contentText.setText((String)getChild(headerPos,contentPos));
@@ -105,7 +105,7 @@ public class InfoListAdapter extends BaseExpandableListAdapter{
         // TODO Auto-generated method stub
         if(convertView==null) {
             LayoutInflater inflator = LayoutInflater.from(context);
-            convertView = inflator.inflate(R.layout.header_layout,parent);
+            convertView = inflator.inflate(R.layout.header_layout,null);
         }
         TextView headerText = (TextView)convertView.findViewById(R.id.header_text);
         headerText.setText((String)getGroup(headerPos));

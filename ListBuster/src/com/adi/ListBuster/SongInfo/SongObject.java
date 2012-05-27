@@ -64,6 +64,20 @@ public class SongObject implements Parcelable {
         
     }
     
+    public static Creator<SongObject> CREATOR = new Creator<SongObject>() {
+
+        public SongObject createFromParcel(Parcel arg0) {
+            // TODO Auto-generated method stub
+            return new SongObject(arg0);
+        }
+
+        public SongObject[] newArray(int arg0) {
+            // TODO Auto-generated method stub
+            return new SongObject[arg0];
+        }
+        
+    };
+    
     public Uri getMediaStoreImage() {
 		return mediaStoreImage;
 	}

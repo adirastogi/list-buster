@@ -1,13 +1,14 @@
 package com.adi.ListBuster.ServiceClients;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.adi.ListBuster.SongInfo.SongObject;
 
@@ -28,18 +29,25 @@ public abstract class MusicClient {
     protected MusicClient(SongObject tr){
     	trackReceived = tr;
     	trackResults = new SongObject();
+
+    
+    
     }
     
-    protected final String queryServer(URL root) {
+    protected final String queryServer(String root) {
         
 
-        URL rootServer = root;
+        
+        
         String response = null;
-        HttpURLConnection conn = null; 
+        //HttpURLConnection conn = null; 
         try {
-            conn = (HttpURLConnection)rootServer.openConnection();
-            InputStream in = new BufferedInputStream(conn.getInputStream());
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            //conn = (HttpURLConnection)rootServer.openConnection();
+            HttpClient client = new DefaultHttpClient();
+            HttpGet req = new HttpGet(root);
+            HttpResponse resp = client.execute(req);
+            //InputStream in = new BufferedInputStream(conn.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resp.getEntity().getContent()));
             StringWriter writer = new StringWriter();
             String buffer;
             while((buffer = reader.readLine())!=null)
@@ -48,7 +56,8 @@ public abstract class MusicClient {
         }catch(IOException e) {
             e.printStackTrace();
         }finally {
-            conn.disconnect();
+            //conn.disconnect();
+            
         }
         
         return response;
