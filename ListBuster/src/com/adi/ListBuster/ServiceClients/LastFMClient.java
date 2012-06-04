@@ -149,28 +149,28 @@ public class LastFMClient extends MusicClient {
 	        	}
 	    	}
 		}
-		//else use the albunmane from track.getInfo to get album name and use it to populate trackinfo at the same time!
-		else{
-			requestParams = new String []{"method:track.getInfo","track:"+trackResults.getSong(),"artist:"+trackResults.getArtist(),"autocorrect:1"};
-			response = queryServer(createRequestString(requestParams));
-			Document doc;
-	    	if((doc=getXMLDoc(response))!=null){
-	    		//get the album name.
-	    		Element album = (Element)(doc.getElementsByTagName("album").item(0));
-	    		trackResults.setAlbumInfo(getValue(album,"title",null,null));  
-	    		
-	    		//now since you have called track.getInfo, use the trackinfo as well!
-	    		Element wiki = (Element)(doc.getElementsByTagName("wiki").item(0));
-        		trackResults.setTrackInfo(getValue(wiki,"summary",null,null));  
-        		return;
-	    	}
+		
+		//if no result from above block then use the albunmane from track.getInfo to get album name and use it to populate trackinfo at the same time!
+		requestParams = new String []{"method:track.getInfo","track:"+trackResults.getSong(),"artist:"+trackResults.getArtist(),"autocorrect:1"};
+		response = queryServer(createRequestString(requestParams));
+		Document doc;
+		if((doc=getXMLDoc(response))!=null){
+		    //get the album name.
+		    Element album = (Element)(doc.getElementsByTagName("album").item(0));
+		    trackResults.setAlbumInfo(getValue(album,"title",null,null));  
+
+		    //now since you have called track.getInfo, use the trackinfo as well!
+		    Element wiki = (Element)(doc.getElementsByTagName("wiki").item(0));
+		    trackResults.setTrackInfo(getValue(wiki,"summary",null,null));  
+		    return;
 		}
 	}
+	
 	
     
     @Override
     protected void searchForAlbumInfo(){
-    	super.searchForImages();
+    	super.searchForAlbumInfo();
     	String[] requestParams = new String []{"method:album.getInfo","album:"+trackResults.getAlbum(),"artist:"+trackResults.getArtist(),"autocorrect:1"};
 		String response = queryServer(createRequestString(requestParams));
 		Document doc;
@@ -191,7 +191,7 @@ public class LastFMClient extends MusicClient {
     	if((doc=getXMLDoc(response))!=null){
     		//now since you have called track.getInfo, use the trackinfo as well!
     		Element bio = (Element)(doc.getElementsByTagName("bio").item(0));
-    		trackResults.setTrackInfo(getValue(bio,"content",null,null));  
+    		trackResults.setArtistInfo(getValue(bio,"content",null,null));  
     		return;
     	}
 	}
@@ -230,7 +230,8 @@ public class LastFMClient extends MusicClient {
    
     
     /**this returns the text value contained in the tag inside the part of tree
-     * rooted at elem and having the attrname(null) equal to attrval(null).
+     * rooted at elem and having the attrname(null) equal to attrval(null).If the tree rooted at
+     * elem is null , it returns null or if the attr//value is not found.
      * @param elem
      * @param tagname
      * @param attrname
@@ -238,6 +239,11 @@ public class LastFMClient extends MusicClient {
      * @return
      */
     protected String getValue(Element elem,String tagname,String attrname,String attrval){
+    	
+        //check for null elements , because the elem object is being picked up from XML and might not be there.
+    	if(elem==null)
+    	    return null;
+    	
     	String value = null;
     	NodeList nl = elem.getElementsByTagName(tagname);
 		 

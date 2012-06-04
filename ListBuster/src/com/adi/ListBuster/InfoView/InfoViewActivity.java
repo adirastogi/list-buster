@@ -158,7 +158,7 @@ public class InfoViewActivity extends Activity{
 				 * Use the results to populate the expandable list view.
 				 * 
 				 */
-				((InfoListAdapter)elView.getAdapter()).setDisplayTrack(result);
+				((InfoListAdapter)elView.getExpandableListAdapter()).setDisplayTrack(result);
 				/*
 				 * get the list of the URLs from the response object and then call the ImageLoader with
 				 * that list and the handler.
