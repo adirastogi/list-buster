@@ -2,6 +2,7 @@ package com.adi.ListBuster.SongInfo;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.net.Uri;
@@ -22,16 +23,16 @@ public class SongObject implements Parcelable {
     /**
      * 
      */
-    private String song;        //this maps to the field display name from the media store.//
-    private String artist;      //this is fetched from the media store.//
-    private String album;		//this is fetched from the media store.//
-    private Uri mediaStoreImage;   //album art from the media store. not sure if it should be a pathname.//
+    private String song = null;        //this maps to the field display name from the media store.//
+    private String artist = null;      //this is fetched from the media store.//
+    private String album = null;		//this is fetched from the media store.//
+    private Uri mediaStoreImage =null;   //album art from the media store. not sure if it should be a pathname.//
     
 
-    private String albumInfo;        //this field will be populated with data from a service.//  
-    private String artistInfo;	     //this field will be populated with data from a service.//
-    private String trackInfo;		//this field will be populated with data from a service.//	
-    private List<URL> albumArtImages;//this field will be populated with data from a service.//
+    private String albumInfo = null;        //this field will be populated with data from a service.//  
+    private String artistInfo = null;	     //this field will be populated with data from a service.//
+    private String trackInfo = null;		//this field will be populated with data from a service.//	
+    private List<URL> albumArtImages = new ArrayList<URL>();//this field will be populated with data from a service.//
     
     
     public SongObject(){
