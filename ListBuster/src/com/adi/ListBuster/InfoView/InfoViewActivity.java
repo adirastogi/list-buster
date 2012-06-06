@@ -167,7 +167,7 @@ public class InfoViewActivity extends Activity{
 				//check if there is a possibility that it is null
 				
 				if(albumArtLinks!=null){
-					ImageLoader iLoader = new ImageLoader(new Vector<URL>(albumArtLinks),imageMessageHandler);
+					ImageLoader iLoader = new ImageLoader(new Vector<URL>(albumArtLinks),imageMessageHandler,getApplicationContext());
 			    //now start the Image loading thread, that will make callbacks to the handler to handle messages.
 					iLoader.getImages();
 				}

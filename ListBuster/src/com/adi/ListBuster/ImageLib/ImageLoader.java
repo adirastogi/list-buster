@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Vector;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -30,8 +31,8 @@ public class ImageLoader {
 	//access by threads.
 	private Handler handler;
 	
-	public ImageLoader(Vector<URL> imgUrls, Handler handler){
-		mCache = MemCache.getMemCache();
+	public ImageLoader(Vector<URL> imgUrls, Handler handler,Context appContext){
+		mCache = MemCache.getMemCache(appContext);
 		this.imgUrls = imgUrls;
 		this.handler = handler;
 	}

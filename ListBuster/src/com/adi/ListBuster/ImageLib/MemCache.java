@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 
 /**
@@ -21,16 +22,16 @@ public class MemCache {
 	
 	private FileCache fCache;
 	
-	private MemCache(){
+	private MemCache(Context appContext){
 		
 		mTable = new HashMap<String, Bitmap>();
-		fCache = FileCache.getFileCache();
+		fCache = FileCache.getFileCache(appContext);
 	}
 	
 	
-	public static MemCache getMemCache(){
+	public static MemCache getMemCache(Context appContext){
 		if(singletonMemCache == null)
-			singletonMemCache = new MemCache();
+			singletonMemCache = new MemCache(appContext);
 		return singletonMemCache;
 	}
 	

@@ -140,7 +140,7 @@ public class LastFMClient extends MusicClient {
 	        	else{
 	        		//match! use the corrected albumname from the result
 	        		Element album = (Element)(doc.getElementsByTagName("album").item(0));
-	        		trackResults.setAlbumInfo(getValue(album,"name",null,null)); 
+	        		trackResults.setAlbum(getValue(album,"name",null,null)); 
 	        		
 	        		//use the albuminfo field from the result as well!
 	        		Element wiki = (Element)(doc.getElementsByTagName("wiki").item(0));
@@ -157,7 +157,7 @@ public class LastFMClient extends MusicClient {
 		if((doc=getXMLDoc(response))!=null){
 		    //get the album name.
 		    Element album = (Element)(doc.getElementsByTagName("album").item(0));
-		    trackResults.setAlbumInfo(getValue(album,"title",null,null));  
+		    trackResults.setAlbum(getValue(album,"title",null,null));  
 
 		    //now since you have called track.getInfo, use the trackinfo as well!
 		    Element wiki = (Element)(doc.getElementsByTagName("wiki").item(0));

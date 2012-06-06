@@ -12,8 +12,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Environment;
+import android.util.Log;
 
 /**
  * @author adrastog
@@ -24,15 +25,16 @@ public class FileCache {
 	private HashMap<String,File> fTable;
 	private static FileCache singletonFileCache;
 	private File cacheDir;
+	Context appContext;
 	
-	private FileCache(){
+	private FileCache(Context appContext){
 		fTable = new HashMap<String, File>();
-		cacheDir = Environment.getDownloadCacheDirectory();
+		cacheDir = appContext.getCacheDir();
 	}
 	
-	public static FileCache getFileCache(){
+	public static FileCache getFileCache(Context appContext){
 		if(singletonFileCache==null)
-			singletonFileCache = new FileCache();
+			singletonFileCache = new FileCache(appContext);
 		return singletonFileCache;
 	}
 	
@@ -68,7 +70,7 @@ public class FileCache {
 		
 		File path;
 		if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)){
-            path=new File(cacheDir,String.valueOf(url.hashCode()));
+            path=new File(cacheDir,"temp"+String.valueOf(url.hashCode()));
             try {
 			    OutputStream os=null;
 				try {
@@ -76,7 +78,7 @@ public class FileCache {
 					bmp.compress(Bitmap.CompressFormat.JPEG, 100, os);
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Log.v("FileCache:", "File Open Error: "+e.toString());
 				}finally{
 					os.close();
 				}

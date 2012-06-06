@@ -71,7 +71,7 @@ public abstract class MusicClient {
                searchForArtist();
            if(trackResults.getAlbum()==null)
                searchForAlbum();
-           if(trackResults.getImagepath()==null)
+           if(trackResults.getAlbumArtImages()==null|| trackResults.getAlbumArtImages().size()<3)
                searchForImages();
            if(trackResults.getAlbumInfo()==null)
                searchForAlbumInfo();
