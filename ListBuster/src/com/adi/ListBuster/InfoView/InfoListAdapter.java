@@ -33,14 +33,9 @@ public class InfoListAdapter extends BaseExpandableListAdapter{
         this.headers.add("Artist");
         this.headers.add("Album");
         content = new ArrayList<ArrayList<String>>();
-        setDisplayTrack(track);
-    }
-    
-    public void setDisplayTrack(SongObject track){
-    	
-    	content.clear();
-    	
-    	ArrayList<String> TrackInfo = new ArrayList<String>();
+        
+        
+        ArrayList<String> TrackInfo = new ArrayList<String>();
         TrackInfo.add(track.getSong());
         TrackInfo.add(track.getTrackInfo());
         
@@ -55,7 +50,23 @@ public class InfoListAdapter extends BaseExpandableListAdapter{
         content.add(TrackInfo);
         content.add(ArtistInfo);
         content.add(AlbumInfo);
-        
+    }
+    
+    public void setDisplayTrack(SongObject track){
+    	
+    	//content.clear();
+    	
+    	
+    	content.get(0).set(0, track.getSong());
+    	content.get(0).set(1, track.getTrackInfo());
+    	
+    	content.get(1).set(0, track.getArtist());
+    	content.get(1).set(1, track.getArtistInfo());
+    	
+    	content.get(2).set(0, track.getAlbum());
+    	content.get(2).set(1, track.getAlbumInfo());
+    	
+    	
         this.notifyDataSetChanged();
     }
 
